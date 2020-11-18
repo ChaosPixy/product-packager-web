@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react';
-import PackageService from '../Services/PackageService';
+import React from 'react';
 import { Package } from '../Props/Package'
 import { render } from '@testing-library/react';
-import { getPackages }  from '../Hooks/PackageHook'
+import { withHooksHOC } from '../withHooksHOC';
+import { PackageFunctionComponent } from '../FunctionComponents/PackageFunctionComponent'
 
-class PackageComponent extends React.Component {
+export class PackageComponent extends React.Component {
 
     state: { packages: Package[] };
 
@@ -15,5 +15,8 @@ class PackageComponent extends React.Component {
         }
     }
 
-    render() { return (<span>{getPackages()}</span>); }
+    render() { return (<PackageFunctionComponent>
+                        {(message) => <span>{message}</span>}
+                       </PackageFunctionComponent>
+        ); }
 }
